@@ -5,14 +5,12 @@
 package com.mycompany.projeksiwarga;
 
 public class Warga {
-   
     String nik;
     String nama;
     String nomorRumah;
     boolean sudahBayarIuran;
     double totalIuran;
 
-    
     public Warga(String nikAwal, String namaAwal, String nomorRumahAwal) {
         this.nik = nikAwal;
         this.nama = namaAwal;
@@ -20,9 +18,44 @@ public class Warga {
         this.sudahBayarIuran = false; 
         this.totalIuran = 0;
     }
-
+    
+    public String getNik(){
+        return nik;
+    }
+    
+    public void setNik(String nik){
+        this.nik= nik;
+    }
+    
+    public String getNama(){
+        return nama;
+    }
+    
+    public void setNama(String nama){
+        this.nama = nama;
+    }
+    
+    public String getNomorRumah(){
+        return nomorRumah;
+    }
+    
+    public void setNomorRumah(String nomorRumah){
+        this.nomorRumah = nomorRumah;
+    }
+    
+    public boolean isSudahBayarIuran(){
+        return sudahBayarIuran;
+    }
+    
+    public double getTotalIuran(){
+        return totalIuran;
+    }
     
     public void bayarIuran(double nominal) {
+        if(nominal <= 0){
+            System.out.println(" Nominal iuran tidak valid!");
+            return;
+        }
         if (!sudahBayarIuran) {
             this.totalIuran += nominal;
             this.sudahBayarIuran = true;

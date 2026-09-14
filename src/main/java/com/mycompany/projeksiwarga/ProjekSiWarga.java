@@ -11,11 +11,17 @@ public class ProjekSiWarga {
         Warga warga1 = new Warga("3201001", "Pak Budi", "Blok A-12");
         Warga warga2 = new Warga("3201002", "Bu Siti", "Blok A-15");
 
+        System.out.println("Nama Warga : " + warga1.getNama());
+        warga1.setNomorRumah("Blok A-15");
         
         warga1.tampilkanStatus();
         warga1.bayarIuran(50000);
         warga1.tampilkanStatus();
         
+        System.out.println("\n==========================================");
+        
         warga2.tampilkanStatus();
+        
+        System.out.println("Cek NIK Bu Siti via Getter: " + warga2.getNik());
     }
 }
