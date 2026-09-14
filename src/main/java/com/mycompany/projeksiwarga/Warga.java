@@ -5,16 +5,16 @@
 package com.mycompany.projeksiwarga;
 
 public class Warga {
-    String nik;
-    String nama;
-    String nomorRumah;
-    boolean sudahBayarIuran;
-    double totalIuran;
+    private String nik;
+    private String nama;
+    private String nomorRumah;
+    private boolean sudahBayarIuran;
+    private double totalIuran;
 
-    public Warga(String nikAwal, String namaAwal, String nomorRumahAwal) {
-        this.nik = nikAwal;
-        this.nama = namaAwal;
-        this.nomorRumah = nomorRumahAwal;
+    public Warga(String nik, String nama, String nomorRumah) {
+        setNik(nik);
+        this.nama = nama;
+        this.nomorRumah = nomorRumah;
         this.sudahBayarIuran = false; 
         this.totalIuran = 0;
     }
@@ -24,7 +24,14 @@ public class Warga {
     }
     
     public void setNik(String nik){
-        this.nik= nik;
+        if(nik == null || nik.trim().isEmpty()){
+            System.out.println("NIK tidak boleh kosong!");
+        }else if(nik.length() < 5){
+            System.out.println("NIK minimal harus 5 karakter!");
+        }else{
+            this.nik = nik;
+            System.out.println("NIK berhasil diubah menjadi : " + nik);
+        }
     }
     
     public String getNama(){
@@ -46,19 +53,29 @@ public class Warga {
     public boolean isSudahBayarIuran(){
         return sudahBayarIuran;
     }
+    public void setSudahBayarIuran(boolean sudahBayarIuran) {
+        this.sudahBayarIuran = sudahBayarIuran;
+    }
     
     public double getTotalIuran(){
         return totalIuran;
     }
     
+    public void setTotalIuran(double totalIuran){
+        if(totalIuran < 0){
+            System.out.println("Total iuran ga boleh mines!");
+    }else{
+            this.totalIuran = totalIuran;
+        }
+    }
     public void bayarIuran(double nominal) {
         if(nominal <= 0){
             System.out.println(" Nominal iuran tidak valid!");
             return;
         }
         if (!sudahBayarIuran) {
-            this.totalIuran += nominal;
-            this.sudahBayarIuran = true;
+            setTotalIuran(this.totalIuran + nominal);
+            setSudahBayarIuran(true);
             System.out.println(" Pembayaran iuran Rp" + nominal + " a.n " + nama + " berhasil.");
         } else {
             System.out.println(" Warga a.n " + nama + " sudah melunasi iuran bulan ini.");
@@ -66,24 +83,11 @@ public class Warga {
     }
 
     public void tampilkanStatus() {
-        String status = sudahBayarIuran ? "LUNAS" : "BELUM BAYAR";
         System.out.println("------------------------------------------");
         System.out.println("No. Rumah : " + nomorRumah);
         System.out.println("Nama / NIK: " + nama + " (" + nik + ")");
-        System.out.println("Status    : " + status);
+        System.out.println("Status    : " + (sudahBayarIuran ? "LUNAS" : "BELUM BAYAR"));
         System.out.println("Total Kas : Rp" + totalIuran);
-    }
-
-    public static void main(String[] args) {
-        
-        Warga warga1 = new Warga("3201001", "Pak Budi", "Blok A-12");
-        Warga warga2 = new Warga("3201002", "Bu Siti", "Blok A-15");
-
-        
-        warga1.tampilkanStatus();
-        warga1.bayarIuran(50000); 
-        warga1.tampilkanStatus();
-
-        warga2.tampilkanStatus(); 
+        System.out.println("------------------------------------------");
     }
 }
