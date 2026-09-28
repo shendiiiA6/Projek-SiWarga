@@ -13,8 +13,8 @@ public class Warga {
 
     public Warga(String nik, String nama, String nomorRumah) {
         setNik(nik);
-        this.nama = nama;
-        this.nomorRumah = nomorRumah;
+        setNama(nama);
+        setNomorRumah(nomorRumah);
         this.sudahBayarIuran = false; 
         this.totalIuran = 0;
     }
@@ -26,8 +26,8 @@ public class Warga {
     public void setNik(String nik){
         if(nik == null || nik.trim().isEmpty()){
             System.out.println("NIK tidak boleh kosong!");
-        }else if(nik.length() < 5){
-            System.out.println("NIK minimal harus 5 karakter!");
+        }else if(nik.length() < 16){
+            System.out.println("NIK minimal harus 16 karakter!");
         }else{
             this.nik = nik;
             System.out.println("NIK berhasil diubah menjadi : " + nik);
@@ -83,11 +83,9 @@ public class Warga {
     }
 
     public void tampilkanStatus() {
-        System.out.println("------------------------------------------");
         System.out.println("No. Rumah : " + nomorRumah);
         System.out.println("Nama / NIK: " + nama + " (" + nik + ")");
         System.out.println("Status    : " + (sudahBayarIuran ? "LUNAS" : "BELUM BAYAR"));
         System.out.println("Total Kas : Rp" + totalIuran);
-        System.out.println("------------------------------------------");
     }
 }

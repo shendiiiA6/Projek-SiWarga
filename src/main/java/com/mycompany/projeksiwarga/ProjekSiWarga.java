@@ -1,48 +1,50 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.mycompany.projeksiwarga;
+
 import java.util.Scanner;
 
 public class ProjekSiWarga {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        
+
         System.out.println("==========================================");
-        System.out.println("         SISTEM MANAJEMEN WARGA    ");
+        System.out.println("           SISTEM MANAJEMEN WARGA         ");
         System.out.println("==========================================");
 
-        System.out.print("Masukkan NIK Warga      : ");
+        System.out.print("Masukkan NIK warga     : ");
         String nik = input.nextLine();
 
-        System.out.print("Masukkan Nama Warga     : ");
+        System.out.print("Masukkan nama warga    : ");
         String nama = input.nextLine();
 
-        System.out.print("Masukkan Nomor Rumah    : ");
+        System.out.print("Masukkan nomor rumah   : ");
         String nomorRumah = input.nextLine();
 
-        Warga warga1 = new Warga(nik, nama, nomorRumah);
+        System.out.print("Masukkan jumlah anggota keluarga: ");
+        int jmlAnggota = input.nextInt();
+        input.nextLine();
+
+        WargaAsli warga1 = new WargaAsli(nik, nama, nomorRumah, jmlAnggota);
 
         while (warga1.getNik() == null) {
-            System.out.print("Silakan masukkan NIK yang valid (minimal 5 karakter): ");
+            System.out.print("NIK harus 16!: ");
             String nikBaru = input.nextLine();
             warga1.setNik(nikBaru); 
         }
+        
+        System.out.println("\n=== DATA WARGA BERHASIL TERDAFTAR ===");
+        System.out.println("NIK            : " + warga1.getNik());
+        System.out.println("Nama           : " + warga1.getNama());
+        System.out.println("No. Rumah       : " + warga1.getNomorRumah());
+        System.out.println("Jumlah anggota : " + warga1.getJumlahAnggotaKeluarga() + " Orang");
 
-        System.out.println("\n--- Data Warga Berhasil Terdaftar ---");
-        System.out.println("NIK       : " + warga1.getNik());
-        System.out.println("Nama      : " + warga1.getNama());
-        System.out.println("No Rumah  : " + warga1.getNomorRumah());
-
-        System.out.println("\n--- PEMBAYARAN IURAN ---");
-        System.out.print("Masukkan Nominal Iuran: Rp");
+        System.out.println("\n=== PEMBAYARAN IURAN ===");
+        System.out.print("Masukkan nominal iuran/bulan: Rp ");
         double nominal = input.nextDouble();
 
         while (nominal <= 0) {
-            System.out.println("Nominal iuran harus lebih dari 0!");
-            System.out.print("Masukkan ulang Nominal Iuran yang valid: Rp");
+            System.out.println("Iuran tidak boleh mines!");
+            System.out.print("Masukkan ulang nominal iuran yang valid: Rp ");
             nominal = input.nextDouble();
         }
 
