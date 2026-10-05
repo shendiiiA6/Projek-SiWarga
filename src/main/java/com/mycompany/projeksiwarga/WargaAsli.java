@@ -5,8 +5,8 @@
 package com.mycompany.projeksiwarga;
 
 public class WargaAsli extends Warga {
-
     private int jumlahAnggotaKeluarga;
+    private static final double TARIF_PER_ORANG = 10000;
 
     public WargaAsli(String nik, String nama, String nomorRumah, int jumlahAnggotaKeluarga) {
         super(nik, nama, nomorRumah); 
@@ -24,6 +24,11 @@ public class WargaAsli extends Warga {
         } else {
             this.jumlahAnggotaKeluarga = jumlahAnggotaKeluarga;
         }
+    }
+    
+    @Override 
+    public double hitungIuranRutin(){
+        return jumlahAnggotaKeluarga * TARIF_PER_ORANG;
     }
 
     @Override

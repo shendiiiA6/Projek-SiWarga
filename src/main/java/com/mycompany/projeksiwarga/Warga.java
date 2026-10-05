@@ -4,7 +4,7 @@
  */
 package com.mycompany.projeksiwarga;
 
-public class Warga {
+public abstract class Warga implements Pembayaran {
     private String nik;
     private String nama;
     private String nomorRumah;
@@ -68,6 +68,7 @@ public class Warga {
             this.totalIuran = totalIuran;
         }
     }
+    @Override
     public void bayarIuran(double nominal) {
         if(nominal <= 0){
             System.out.println(" Nominal iuran tidak valid!");
@@ -82,6 +83,8 @@ public class Warga {
         }
     }
 
+    public abstract double hitungIuranRutin();
+    
     public void tampilkanStatus() {
         System.out.println("No. Rumah : " + nomorRumah);
         System.out.println("Nama / NIK: " + nama + " (" + nik + ")");

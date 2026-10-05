@@ -24,7 +24,7 @@ public class ProjekSiWarga {
         int jmlAnggota = input.nextInt();
         input.nextLine();
 
-        WargaAsli warga1 = new WargaAsli(nik, nama, nomorRumah, jmlAnggota);
+        Warga warga1 = new WargaAsli(nik, nama, nomorRumah, jmlAnggota);
 
         while (warga1.getNik() == null) {
             System.out.print("NIK harus 16!: ");
@@ -36,8 +36,10 @@ public class ProjekSiWarga {
         System.out.println("NIK            : " + warga1.getNik());
         System.out.println("Nama           : " + warga1.getNama());
         System.out.println("No. Rumah       : " + warga1.getNomorRumah());
-        System.out.println("Jumlah anggota : " + warga1.getJumlahAnggotaKeluarga() + " Orang");
-
+        
+        System.out.println("Jumlah anggota : " + ((WargaAsli)warga1).getJumlahAnggotaKeluarga() + " Orang");
+        System.out.println("Iuran Rutin : Rp" + warga1.hitungIuranRutin());
+        
         System.out.println("\n=== PEMBAYARAN IURAN ===");
         System.out.print("Masukkan nominal iuran/bulan: Rp ");
         double nominal = input.nextDouble();
